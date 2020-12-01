@@ -1,11 +1,13 @@
 package com.zipcodewilmington.arrayutility;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
  * Created by leon on 3/6/18.
  */
 public class ArrayUtility <T>{
+
     private T [] array;
     public ArrayUtility(T [] inputArray) {
         this.array = inputArray;
@@ -74,10 +76,20 @@ public class ArrayUtility <T>{
     }
 
     public Integer getNumberOfOccurrences(T valueToEvaluate) {
-        return 0;
+        Integer count = 0;
+        for(T e: array){
+            if(e == valueToEvaluate){
+                count++;
+            }
+        }
+        return count;
     }
 
     public T[] removeValue(T valueToRemove) {
-        return null;
+        Integer occurances = getNumberOfOccurrences(valueToRemove);
+        ArrayList<T> al = new ArrayList<>(Arrays.asList(array));
+        al.remove(valueToRemove);
+        return (Object[]) al.toArray();
+
     }
 }
