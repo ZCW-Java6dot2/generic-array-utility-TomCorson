@@ -86,10 +86,17 @@ public class ArrayUtility <T>{
     }
 
     public T[] removeValue(T valueToRemove) {
-        Integer occurances = getNumberOfOccurrences(valueToRemove);
-        ArrayList<T> al = new ArrayList<>(Arrays.asList(array));
-        al.remove(valueToRemove);
-        return (Object[]) al.toArray();
-
+        int numberOfOccurrences = getNumberOfOccurrences(valueToRemove);
+        T[] results = Arrays.copyOf(array, array.length - numberOfOccurrences);
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != valueToRemove) {
+                results[j] = array[i];
+                j++;
+            }
+        }
+        return results;
     }
+
+    
 }
